@@ -6,11 +6,13 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 public abstract class AbstractSmell {
-    public abstract String getSmellName();
+	public abstract String getSmellName();
 
-    public abstract boolean getHasSmell();
+	public abstract boolean getHasSmell();
 
-    public abstract void runAnalysis(CompilationUnit testFileCompilationUnit,CompilationUnit productionFileCompilationUnit, String testFileName, String productionFileName) throws FileNotFoundException;
+	public abstract void runAnalysis(TestFile testFile, CompilationUnit testFileCompilationUnit,
+			CompilationUnit productionFileCompilationUnit, String testFileName, String productionFileName)
+			throws FileNotFoundException;
 
-    public abstract List<TestMethod> getSmellyElements();
+	public abstract List<TestMethod> getSmellyElements();
 }

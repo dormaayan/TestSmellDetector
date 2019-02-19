@@ -28,8 +28,6 @@ public class TestSmellDetector {
 		testSmells = new ArrayList<>();
 		testSmells.add(new AssertionRoulette());
 		testSmells.add(new ConditionalTestLogic());
-		// testSmells.add(new ConstructorInitialization());
-		// testSmells.add(new DefaultTest());
 		testSmells.add(new EmptyTest());
 		testSmells.add(new ExceptionCatchingThrowing());
 		testSmells.add(new GeneralFixture());
@@ -40,13 +38,20 @@ public class TestSmellDetector {
 		testSmells.add(new VerboseTest());
 		testSmells.add(new SleepyTest());
 		testSmells.add(new EagerTest());
-		// testSmells.add(new LazyTest());
 		testSmells.add(new DuplicateAssert());
 		testSmells.add(new UnknownTest());
 		testSmells.add(new IgnoredTest());
 		testSmells.add(new ResourceOptimism());
 		testSmells.add(new MagicNumberTest());
+
+		// Deprecated for now:
+		// All commented smells are ones which doesn't work in a method level
+
+		// testSmells.add(new ConstructorInitialization());
+		// testSmells.add(new DefaultTest());
+		// testSmells.add(new LazyTest());
 		// testSmells.add(new DependentTest());
+
 	}
 
 	/**
@@ -88,7 +93,7 @@ public class TestSmellDetector {
 		initializeSmells();
 		for (AbstractSmell smell : testSmells) {
 			try {
-				smell.runAnalysis(testFileCompilationUnit, productionFileCompilationUnit,
+				smell.runAnalysis(testFile, testFileCompilationUnit, productionFileCompilationUnit,
 						testFile.getTestFileNameWithoutExtension(), testFile.getProductionFileNameWithoutExtension());
 			} catch (FileNotFoundException e) {
 				testFile.addSmell(null);

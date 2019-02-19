@@ -24,6 +24,7 @@ public class EagerTest extends AbstractSmell {
 	private String productionClassName;
 	private List<TestMethod> smellyElementList;
 	private List<MethodDeclaration> productionMethods;
+	private TestFile currentTestFile;
 
 	public EagerTest() {
 		productionMethods = new ArrayList<>();
@@ -43,23 +44,18 @@ public class EagerTest extends AbstractSmell {
 	 */
 	@Override
 	public boolean getHasSmell() {
-		//return smellyElementList.stream().filter(x -> x.getHasSmell()).count() >= 1;
-		boolean flag = false;
-		for(TestMethod m : smellyElementList) {
-			if(m.getHasSmell()) {
-				System.out.println(m.getElementName());
-				flag = true;
-			}
-		}
-		return flag;
+		return smellyElementList.stream().filter(x -> x.getHasSmell()).count() >= 1;
 	}
 
 	/**
 	 * Analyze the test file for test methods that exhibit the 'Eager Test' smell
 	 */
 	@Override
-	public void runAnalysis(CompilationUnit testFileCompilationUnit, CompilationUnit productionFileCompilationUnit,
-			String testFileName, String productionFileName) throws FileNotFoundException {
+	public void runAnalysis(TestFile testFile, CompilationUnit testFileCompilationUnit,
+			CompilationUnit productionFileCompilationUnit, String testFileName, String productionFileName)
+			throws FileNotFoundException {
+
+		this.currentTestFile = testFile;
 
 		if (productionFileCompilationUnit == null)
 			throw new FileNotFoundException();
@@ -123,12 +119,14 @@ public class EagerTest extends AbstractSmell {
 				if (Util.isValidTestMethod(n)) {
 					currentMethod = n;
 					testMethod = new TestMethod(currentMethod.getNameAsString());
+					currentTestFile.addTest(testMethod);
 					testMethod.setHasSmell(false); // default value is false (i.e. no smell)
 					super.visit(n, arg);
 
 					testMethod.setHasSmell(eagerCount > 1); // the method has a smell if there is more than 1 call to
 															// production methods
 					smellyElementList.add(testMethod);
+					currentTestFile.addSmellMethod("Eager Test", testMethod);
 
 					// reset values for next method
 					currentMethod = null;
@@ -221,4 +219,5 @@ public class EagerTest extends AbstractSmell {
 			super.visit(n, arg);
 		}
 	}
+
 }

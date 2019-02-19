@@ -1,3 +1,4 @@
+package testsmell.smell.deprecated;
 //package testsmell.smell;
 //
 //import com.github.javaparser.ast.CompilationUnit;
