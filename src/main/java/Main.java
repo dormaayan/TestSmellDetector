@@ -88,11 +88,11 @@ public class Main {
             //write output
             columnValues = new ArrayList<>();
             columnValues.add(file.getApp());
-            columnValues.add(file.getTagName());
+            //columnValues.add(file.getTagName());
             columnValues.add(file.getTestFilePath());
             columnValues.add(file.getProductionFilePath());
-            columnValues.add(file.getRelativeTestFilePath());
-            columnValues.add(file.getRelativeProductionFilePath());
+            //columnValues.add(file.getRelativeTestFilePath());
+            //columnValues.add(file.getRelativeProductionFilePath());
             for (AbstractSmell smell : tempFile.getTestSmells()) {
                 try {
                     columnValues.add(String.valueOf(smell.getHasSmell()));

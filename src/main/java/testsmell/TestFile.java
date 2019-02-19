@@ -41,7 +41,7 @@ public class TestFile {
     }
 
     public String getTagName(){
-        return testFilePath.split("\\\\")[4];
+        return testFilePath.split("////")[4];
     }
 
     public String getTestFileName(){
