@@ -149,12 +149,15 @@ public class GeneralFixture extends AbstractSmell {
 
 				testMethod = new TestMethod(n.getNameAsString());
 				currentTestFile.addTest(testMethod);
-				testMethod.setHasSmell(fixtureCount.size() != setupFields.size());
-				smellyElementList.add(testMethod);
-				currentTestFile.addSmellMethod("General Fixture", testMethod);
+				if (fixtureCount.size() != setupFields.size()) {
+					testMethod.setHasSmell(true);
+					currentTestFile.addSmellMethod("General Fixture", testMethod);
 
+				} else {
+					testMethod.setHasSmell(false);
+				}
+				smellyElementList.add(testMethod);
 				fixtureCount = new HashSet();
-				;
 				currentMethod = null;
 			}
 		}

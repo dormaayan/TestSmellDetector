@@ -80,16 +80,19 @@ public class DuplicateAssert extends AbstractSmell {
 				Set<String> set1 = new HashSet<String>(assertMessage);
 				if (set1.size() < assertMessage.size()) {
 					testMethod.setHasSmell(true);
+					currentTestFile.addSmellMethod("Duplicate Assert", testMethod);
+
 				}
 
 				// if there are duplicate assert methods, then the smell exists
 				Set<String> set2 = new HashSet<String>(assertMethod);
 				if (set2.size() < assertMethod.size()) {
 					testMethod.setHasSmell(true);
+					currentTestFile.addSmellMethod("Duplicate Assert", testMethod);
+
 				}
 
 				smellyElementList.add(testMethod);
-				currentTestFile.addSmellMethod("Duplicate Assert", testMethod);
 
 				// reset values for next method
 				currentMethod = null;

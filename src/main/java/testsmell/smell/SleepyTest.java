@@ -80,11 +80,13 @@ public class SleepyTest extends AbstractSmell {
 				testMethod.setHasSmell(false); // default value is false (i.e. no smell)
 				super.visit(n, arg);
 
-				testMethod.setHasSmell(sleepCount >= 1);
+				if (sleepCount >= 1) {
+					testMethod.setHasSmell(true);
+					currentTestFile.addSmellMethod("Sleepy Test", testMethod);
+				}
 				testMethod.addDataItem("ThreadSleepCount", String.valueOf(sleepCount));
 
 				smellyElementList.add(testMethod);
-				currentTestFile.addSmellMethod("Sleepy Test", testMethod);
 
 				// reset values for next method
 				currentMethod = null;

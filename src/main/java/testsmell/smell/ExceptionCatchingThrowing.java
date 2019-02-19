@@ -83,11 +83,13 @@ public class ExceptionCatchingThrowing extends AbstractSmell {
 				if (n.getThrownExceptions().size() >= 1)
 					exceptionCount++;
 
-				testMethod.setHasSmell(exceptionCount >= 1);
+				if (exceptionCount >= 1) {
+					testMethod.setHasSmell(true);
+					currentTestFile.addSmellMethod("Exception Catching Throwing", testMethod);
+				}
 				testMethod.addDataItem("ExceptionCount", String.valueOf(exceptionCount));
 
 				smellyElementList.add(testMethod);
-				currentTestFile.addSmellMethod("Exception Catching Throwing", testMethod);
 
 				// reset values for next method
 				currentMethod = null;

@@ -101,11 +101,13 @@ public class MysteryGuest extends AbstractSmell {
 				testMethod.setHasSmell(false); // default value is false (i.e. no smell)
 				super.visit(n, arg);
 
-				testMethod.setHasSmell(mysteryCount > 0);
+				if (mysteryCount > 0) {
+					testMethod.setHasSmell(true);
+					currentTestFile.addSmellMethod("Mystery Guest", testMethod);
+				}
 				testMethod.addDataItem("MysteryCount", String.valueOf(mysteryCount));
 
 				smellyElementList.add(testMethod);
-				currentTestFile.addSmellMethod("Mystery Guest", testMethod);
 
 				// reset values for next method
 				currentMethod = null;

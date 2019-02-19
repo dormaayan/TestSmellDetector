@@ -86,7 +86,6 @@ public class EmptyTest extends AbstractSmell {
 						if (n.getBody().get().getStatements().size() == 0) {
 							testMethod.setHasSmell(true); // the method has no statements (i.e no body)
 							currentTestFile.addSmellMethod("EmptyTest", testMethod);
-
 						}
 					}
 				}

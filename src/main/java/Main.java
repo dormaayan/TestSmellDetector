@@ -94,7 +94,7 @@ public class Main {
 						columnValues.add(
 								String.valueOf(file.getSmellsMethods().get(smell.getSmellName()).contains(testMethod)));
 					} catch (NullPointerException e) {
-						columnValues.add("");
+						columnValues.add("False");
 					}
 				}
 				resultsWriter.writeLine(columnValues);

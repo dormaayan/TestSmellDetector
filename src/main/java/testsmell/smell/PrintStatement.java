@@ -81,11 +81,13 @@ public class PrintStatement extends AbstractSmell {
 				testMethod.setHasSmell(false); // default value is false (i.e. no smell)
 				super.visit(n, arg);
 
-				testMethod.setHasSmell(printCount >= 1);
+				if (printCount >= 1) {
+					testMethod.setHasSmell(true);
+					currentTestFile.addSmellMethod("Print Statement", testMethod);
+				}
 				testMethod.addDataItem("PrintCount", String.valueOf(printCount));
 
 				smellyElementList.add(testMethod);
-				currentTestFile.addSmellMethod("Print Statement", testMethod);
 
 				// reset values for next method
 				currentMethod = null;

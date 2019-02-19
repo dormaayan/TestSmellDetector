@@ -40,7 +40,6 @@ public class TestSmellDetector {
 		testSmells.add(new EagerTest());
 		testSmells.add(new DuplicateAssert());
 		testSmells.add(new UnknownTest());
-		testSmells.add(new IgnoredTest());
 		testSmells.add(new ResourceOptimism());
 		testSmells.add(new MagicNumberTest());
 
@@ -51,6 +50,7 @@ public class TestSmellDetector {
 		// testSmells.add(new DefaultTest());
 		// testSmells.add(new LazyTest());
 		// testSmells.add(new DependentTest());
+		// testSmells.add(new IgnoredTest());
 
 	}
 

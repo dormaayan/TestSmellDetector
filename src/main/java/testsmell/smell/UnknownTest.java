@@ -96,11 +96,11 @@ public class UnknownTest extends AbstractSmell {
 				super.visit(n, arg);
 
 				// if there are duplicate messages, then the smell exists
-				if (!hasAssert && !hasExceptionAnnotation)
+				if (!hasAssert && !hasExceptionAnnotation) {
 					testMethod.setHasSmell(true);
-
+					currentTestFile.addSmellMethod("Unknown Test", testMethod);
+				}
 				smellyElementList.add(testMethod);
-				currentTestFile.addSmellMethod("Unknown Test", testMethod);
 
 				// reset values for next method
 				currentMethod = null;

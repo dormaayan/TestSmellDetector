@@ -80,11 +80,13 @@ public class ResourceOptimism extends AbstractSmell {
 				testMethod.setHasSmell(false); // default value is false (i.e. no smell)
 				super.visit(n, arg);
 
-				testMethod.setHasSmell(methodVariables.size() >= 1 || hasSmell == true);
+				if (methodVariables.size() >= 1 || hasSmell == true) {
+					testMethod.setHasSmell(true);
+					currentTestFile.addSmellMethod("Resource Optimism", testMethod);
+				}
 				testMethod.addDataItem("ResourceOptimismCount", String.valueOf(resourceOptimismCount));
 
 				smellyElementList.add(testMethod);
-				currentTestFile.addSmellMethod("Resource Optimism", testMethod);
 
 				// reset values for next method
 				currentMethod = null;

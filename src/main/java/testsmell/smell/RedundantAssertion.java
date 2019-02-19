@@ -80,12 +80,13 @@ public class RedundantAssertion extends AbstractSmell {
 				testMethod.setHasSmell(false); // default value is false (i.e. no smell)
 				super.visit(n, arg);
 
-				testMethod.setHasSmell(redundantCount >= 1);
+				if (redundantCount >= 1) {
+					testMethod.setHasSmell(true);
+					currentTestFile.addSmellMethod("Redundant Assertion", testMethod);
+				}
 				testMethod.addDataItem("RedundantCount", String.valueOf(redundantCount));
 
 				smellyElementList.add(testMethod);
-				currentTestFile.addSmellMethod("Redundant Assertion", testMethod);
-
 
 				// reset values for next method
 				currentMethod = null;

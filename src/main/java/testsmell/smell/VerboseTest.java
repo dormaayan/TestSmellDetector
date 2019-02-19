@@ -86,11 +86,13 @@ public class VerboseTest extends AbstractSmell {
 						}
 					}
 				}
-				testMethod.setHasSmell(verboseCount >= 1);
+				if (verboseCount >= 1) {
+					testMethod.setHasSmell(true);
+					currentTestFile.addSmellMethod("Verbose Test", testMethod);
+				}
 				testMethod.addDataItem("VerboseCount", String.valueOf(verboseCount));
 
 				smellyElementList.add(testMethod);
-				currentTestFile.addSmellMethod("Verbose Test", testMethod);
 
 				// reset values for next method
 				currentMethod = null;

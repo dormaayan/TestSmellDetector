@@ -78,8 +78,11 @@ public class ConditionalTestLogic extends AbstractSmell {
 				testMethod.setHasSmell(false); // default value is false (i.e. no smell)
 				super.visit(n, arg);
 
-				testMethod.setHasSmell(conditionCount > 0 | ifCount > 0 | switchCount > 0 | foreachCount > 0
-						| forCount > 0 | whileCount > 0);
+				if (conditionCount > 0 | ifCount > 0 | switchCount > 0 | foreachCount > 0 | forCount > 0
+						| whileCount > 0) {
+					testMethod.setHasSmell(true);
+					currentTestFile.addSmellMethod("Conditional Test Logic", testMethod);
+				}
 
 				testMethod.addDataItem("ConditionCount", String.valueOf(conditionCount));
 				testMethod.addDataItem("IfCount", String.valueOf(ifCount));
@@ -89,7 +92,6 @@ public class ConditionalTestLogic extends AbstractSmell {
 				testMethod.addDataItem("WhileCount", String.valueOf(whileCount));
 
 				smellyElementList.add(testMethod);
-				currentTestFile.addSmellMethod("Conditional Test Logic", testMethod);
 
 				// reset values for next method
 				currentMethod = null;

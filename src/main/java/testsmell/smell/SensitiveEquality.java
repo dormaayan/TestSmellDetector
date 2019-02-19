@@ -76,11 +76,13 @@ public class SensitiveEquality extends AbstractSmell {
 				testMethod.setHasSmell(false); // default value is false (i.e. no smell)
 				super.visit(n, arg);
 
-				testMethod.setHasSmell(sensitiveCount >= 1);
+				if (sensitiveCount >= 1) {
+					testMethod.setHasSmell(true);
+					currentTestFile.addSmellMethod("Sensitive Equality", testMethod);
+				}
 				testMethod.addDataItem("SensitiveCount", String.valueOf(sensitiveCount));
 
 				smellyElementList.add(testMethod);
-				currentTestFile.addSmellMethod("Sensitive Equality", testMethod);
 
 				// reset values for next method
 				currentMethod = null;
