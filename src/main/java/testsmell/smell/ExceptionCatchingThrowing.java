@@ -20,7 +20,7 @@ If this code detects the existence of a catch block or a throw statement in the 
  */
 public class ExceptionCatchingThrowing extends AbstractSmell {
 
-    private List<SmellyElement> smellyElementList;
+    private List<TestMethod> smellyElementList;
 
     public ExceptionCatchingThrowing() {
         smellyElementList = new ArrayList<>();
@@ -56,7 +56,7 @@ public class ExceptionCatchingThrowing extends AbstractSmell {
      * Returns the set of analyzed elements (i.e. test methods)
      */
     @Override
-    public List<SmellyElement> getSmellyElements() {
+    public List<TestMethod> getSmellyElements() {
         return smellyElementList;
     }
 

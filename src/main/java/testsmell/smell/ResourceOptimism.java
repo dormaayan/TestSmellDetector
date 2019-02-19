@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ResourceOptimism extends AbstractSmell {
 
-    private List<SmellyElement> smellyElementList;
+    private List<TestMethod> smellyElementList;
 
     public ResourceOptimism() {
         smellyElementList = new ArrayList<>();
@@ -53,7 +53,7 @@ public class ResourceOptimism extends AbstractSmell {
      * Returns the set of analyzed elements (i.e. test methods)
      */
     @Override
-    public List<SmellyElement> getSmellyElements() {
+    public List<TestMethod> getSmellyElements() {
         return smellyElementList;
     }
 

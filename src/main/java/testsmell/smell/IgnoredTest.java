@@ -16,7 +16,7 @@ import java.util.List;
 
 public class IgnoredTest extends AbstractSmell {
 
-    private List<SmellyElement> smellyElementList;
+    private List<TestMethod> smellyElementList;
 
     public IgnoredTest() {
         smellyElementList = new ArrayList<>();
@@ -52,7 +52,7 @@ public class IgnoredTest extends AbstractSmell {
      * Returns the set of analyzed elements (i.e. test methods)
      */
     @Override
-    public List<SmellyElement> getSmellyElements() {
+    public List<TestMethod> getSmellyElements() {
         return smellyElementList;
     }
 
@@ -63,18 +63,18 @@ public class IgnoredTest extends AbstractSmell {
         TestMethod testMethod;
         TestClass testClass;
 
-        /**
-         * This method will check if the class has the @Ignore annotation
-         */
-        @Override
-        public void visit(ClassOrInterfaceDeclaration n, Void arg) {
-            if (n.getAnnotationByName("Ignore").isPresent()) {
-                testClass = new TestClass(n.getNameAsString());
-                testClass.setHasSmell(true);
-                smellyElementList.add(testClass);
-            }
-            super.visit(n, arg);
-        }
+//        /**
+//         * This method will check if the class has the @Ignore annotation
+//         */
+//        @Override
+//        public void visit(ClassOrInterfaceDeclaration n, Void arg) {
+//            if (n.getAnnotationByName("Ignore").isPresent()) {
+//                testClass = new TestClass(n.getNameAsString());
+//                testClass.setHasSmell(true);
+//                smellyElementList.add(testClass);
+//            }
+//            super.visit(n, arg);
+//        }
 
         /**
          * The purpose of this method is to 'visit' all test methods in the test file.

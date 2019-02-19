@@ -17,7 +17,7 @@ If a test methods contains a statements that exceeds a certain threshold, the me
  */
 public class VerboseTest extends AbstractSmell {
 
-    private List<SmellyElement> smellyElementList;
+    private List<TestMethod> smellyElementList;
 
     public VerboseTest() {
         smellyElementList = new ArrayList<>();
@@ -53,7 +53,7 @@ public class VerboseTest extends AbstractSmell {
      * Returns the set of analyzed elements (i.e. test methods)
      */
     @Override
-    public List<SmellyElement> getSmellyElements() {
+    public List<TestMethod> getSmellyElements() {
         return smellyElementList;
     }
 

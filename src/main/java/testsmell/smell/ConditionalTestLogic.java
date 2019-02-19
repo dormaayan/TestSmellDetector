@@ -18,7 +18,7 @@ import java.util.List;
 This class check a test method for the existence of loops and conditional statements in the methods body
  */
 public class ConditionalTestLogic extends AbstractSmell {
-    private List<SmellyElement> smellyElementList;
+    private List<TestMethod> smellyElementList;
 
     public ConditionalTestLogic() {
         smellyElementList = new ArrayList<>();
@@ -54,7 +54,7 @@ public class ConditionalTestLogic extends AbstractSmell {
      * Returns the set of analyzed elements (i.e. test methods)
      */
     @Override
-    public List<SmellyElement> getSmellyElements() {
+    public List<TestMethod> getSmellyElements() {
         return smellyElementList;
     }
 

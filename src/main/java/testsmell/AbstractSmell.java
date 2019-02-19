@@ -12,5 +12,5 @@ public abstract class AbstractSmell {
 
     public abstract void runAnalysis(CompilationUnit testFileCompilationUnit,CompilationUnit productionFileCompilationUnit, String testFileName, String productionFileName) throws FileNotFoundException;
 
-    public abstract List<SmellyElement> getSmellyElements();
+    public abstract List<TestMethod> getSmellyElements();
 }

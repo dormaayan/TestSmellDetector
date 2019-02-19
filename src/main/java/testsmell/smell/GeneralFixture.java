@@ -21,7 +21,7 @@ import java.util.*;
 
 public class GeneralFixture extends AbstractSmell {
 
-    private List<SmellyElement> smellyElementList;
+    private List<TestMethod> smellyElementList;
     List<MethodDeclaration> methodList;
     MethodDeclaration setupMethod;
     List<FieldDeclaration> fieldList;
@@ -90,7 +90,7 @@ public class GeneralFixture extends AbstractSmell {
      * Returns the set of analyzed elements (i.e. test methods)
      */
     @Override
-    public List<SmellyElement> getSmellyElements() {
+    public List<TestMethod> getSmellyElements() {
         return smellyElementList;
     }
 

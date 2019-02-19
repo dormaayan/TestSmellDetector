@@ -21,7 +21,7 @@ This code checks the body of each test method if System.out. print(), println(),
  */
 public class PrintStatement extends AbstractSmell {
 
-    private List<SmellyElement> smellyElementList;
+    private List<TestMethod> smellyElementList;
 
     public PrintStatement() {
         smellyElementList = new ArrayList<>();
@@ -57,7 +57,7 @@ public class PrintStatement extends AbstractSmell {
      * Returns the set of analyzed elements (i.e. test methods)
      */
     @Override
-    public List<SmellyElement> getSmellyElements() {
+    public List<TestMethod> getSmellyElements() {
         return smellyElementList;
     }
 

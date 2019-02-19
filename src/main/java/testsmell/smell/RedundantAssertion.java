@@ -20,7 +20,7 @@ If a test method contains an assert statement that explicitly returns a true or 
  */
 public class RedundantAssertion extends AbstractSmell {
 
-    private List<SmellyElement> smellyElementList;
+    private List<TestMethod> smellyElementList;
 
     public RedundantAssertion() {
         smellyElementList = new ArrayList<>();
@@ -56,7 +56,7 @@ public class RedundantAssertion extends AbstractSmell {
      * Returns the set of analyzed elements (i.e. test methods)
      */
     @Override
-    public List<SmellyElement> getSmellyElements() {
+    public List<TestMethod> getSmellyElements() {
         return smellyElementList;
     }
 

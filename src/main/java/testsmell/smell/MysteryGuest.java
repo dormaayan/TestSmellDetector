@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class MysteryGuest extends AbstractSmell {
 
-    private List<SmellyElement> smellyElementList;
+    private List<TestMethod> smellyElementList;
 
     public MysteryGuest() {
         smellyElementList = new ArrayList<>();
@@ -60,7 +60,7 @@ public class MysteryGuest extends AbstractSmell {
      * Returns the set of analyzed elements (i.e. test methods)
      */
     @Override
-    public List<SmellyElement> getSmellyElements() {
+    public List<TestMethod> getSmellyElements() {
         return smellyElementList;
     }
 
