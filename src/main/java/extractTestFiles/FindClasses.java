@@ -14,6 +14,7 @@ import java.util.Set;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.ImportDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.javaparser.ast.expr.MarkerAnnotationExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.google.common.base.Strings;
 import com.opencsv.CSVWriter;
@@ -51,10 +52,18 @@ public class FindClasses {
 					@Override
 					public void visit(ImportDeclaration n, Object arg) {
 						super.visit(n, arg);
-						if (isTestingImport(n.getName().toString()) && !path.contains("/target/")
-								&& path.contains("/src/"))
+						if (isTestingImport(n.getName().toString()) && !path.contains("/clover/"))
+							// && path.contains("/src/"))
 							testFiles.add(projectPath + path);
 					}
+					//
+					// @Override
+					// public void visit(MarkerAnnotationExpr a, Object arg) {
+					// super.visit(n, arg);
+					// if (isTestingImport(.getName().toString()) && !path.contains("/target/")
+					// && path.contains("/src/"))
+					// testFiles.add(projectPath + path);
+					// }
 				}.visit(JavaParser.parse(file), null);
 			} catch (IOException e) {
 				new RuntimeException(e);
@@ -84,7 +93,8 @@ public class FindClasses {
 
 	public static void translateToCSV(Map<String, String> testToProduction, String projectPath) throws IOException {
 		String projectName = projectPath.split("/")[projectPath.split("/").length - 1];
-		CSVWriter csvWriter = new CSVWriter(new FileWriter("inputPaths/" + projectName + ".csv"));
+		CSVWriter csvWriter = new CSVWriter(new FileWriter("inputPaths/" + projectName + ".csv"),
+				CSVWriter.DEFAULT_SEPARATOR, CSVWriter.NO_QUOTE_CHARACTER);
 		for (String test : testToProduction.keySet())
 			csvWriter.writeNext(new String[] { projectName, test, testToProduction.get(test) });
 		csvWriter.close();
