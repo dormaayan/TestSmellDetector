@@ -1,17 +1,17 @@
 package testsmell.smell;
 
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import testsmell.AbstractSmell;
-import testsmell.SmellyElement;
-import testsmell.TestFile;
-import testsmell.TestMethod;
-import testsmell.Util;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+
+import testsmell.AbstractSmell;
+import testsmell.TestFile;
+import testsmell.TestMethod;
+import testsmell.Util;
 
 /*
 If a test methods contains a statements that exceeds a certain threshold, the method is marked as smelly

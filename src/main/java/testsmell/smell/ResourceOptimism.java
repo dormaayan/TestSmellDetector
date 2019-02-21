@@ -1,20 +1,23 @@
 package testsmell.smell;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
-import com.github.javaparser.ast.expr.*;
+import com.github.javaparser.ast.expr.MethodCallExpr;
+import com.github.javaparser.ast.expr.NameExpr;
+import com.github.javaparser.ast.expr.ObjectCreationExpr;
+import com.github.javaparser.ast.expr.VariableDeclarationExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+
 import testsmell.AbstractSmell;
-import testsmell.SmellyElement;
 import testsmell.TestFile;
 import testsmell.TestMethod;
 import testsmell.Util;
-
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ResourceOptimism extends AbstractSmell {
 
@@ -73,7 +76,7 @@ public class ResourceOptimism extends AbstractSmell {
 		// examine all methods in the test class
 		@Override
 		public void visit(MethodDeclaration n, Void arg) {
-			if (Util.isValidTestMethod(n) || Util.isValidSetupMethod(n)) {
+			if (Util.isValidTestMethod(n)) {
 				currentMethod = n;
 				testMethod = new TestMethod(n.getNameAsString());
 				currentTestFile.addTest(testMethod);

@@ -1,17 +1,17 @@
 package testsmell.smell;
 
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import testsmell.AbstractSmell;
-import testsmell.SmellyElement;
-import testsmell.TestFile;
-import testsmell.TestMethod;
-import testsmell.Util;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+
+import testsmell.AbstractSmell;
+import testsmell.TestFile;
+import testsmell.TestMethod;
+import testsmell.Util;
 
 /**
  * This class checks if a test method is empty (i.e. the method does not contain

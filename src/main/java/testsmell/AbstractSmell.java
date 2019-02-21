@@ -1,9 +1,9 @@
 package testsmell;
 
-import com.github.javaparser.ast.CompilationUnit;
-
 import java.io.FileNotFoundException;
 import java.util.List;
+
+import com.github.javaparser.ast.CompilationUnit;
 
 public abstract class AbstractSmell {
 	public abstract String getSmellName();

@@ -1,19 +1,23 @@
 package testsmell.smell;
 
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.expr.ConditionalExpr;
-import com.github.javaparser.ast.stmt.*;
-import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import testsmell.AbstractSmell;
-import testsmell.SmellyElement;
-import testsmell.TestFile;
-import testsmell.TestMethod;
-import testsmell.Util;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.expr.ConditionalExpr;
+import com.github.javaparser.ast.stmt.ForStmt;
+import com.github.javaparser.ast.stmt.ForeachStmt;
+import com.github.javaparser.ast.stmt.IfStmt;
+import com.github.javaparser.ast.stmt.SwitchStmt;
+import com.github.javaparser.ast.stmt.WhileStmt;
+import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+
+import testsmell.AbstractSmell;
+import testsmell.TestFile;
+import testsmell.TestMethod;
+import testsmell.Util;
 
 /*
 This class check a test method for the existence of loops and conditional statements in the methods body

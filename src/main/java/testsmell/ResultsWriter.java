@@ -2,8 +2,6 @@ package testsmell;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.MessageFormat;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -20,11 +18,8 @@ public class ResultsWriter {
 	 * 
 	 * @throws IOException
 	 */
-	private ResultsWriter() throws IOException {
-		// String time = String.valueOf(Calendar.getInstance().getTimeInMillis());
-		// outputFile = MessageFormat.format("{0}_{1}_{2}.{3}",
-		// "Output","TestSmellDetection",time, "csv");
-		outputFile = "outputFile.csv";
+	private ResultsWriter(String projectName) throws IOException {
+		outputFile = "outputSmells/" + projectName + ".csv";
 		writer = new FileWriter(outputFile, false);
 	}
 
@@ -34,8 +29,8 @@ public class ResultsWriter {
 	 * @return new ResultsWriter instance
 	 * @throws IOException
 	 */
-	public static ResultsWriter createResultsWriter() throws IOException {
-		return new ResultsWriter();
+	public static ResultsWriter createResultsWriter(String projectName) throws IOException {
+		return new ResultsWriter(projectName);
 	}
 
 	/**

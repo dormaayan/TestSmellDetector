@@ -1,22 +1,17 @@
 package extractTestFiles;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.ImportDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
-import com.github.javaparser.ast.expr.MarkerAnnotationExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import com.google.common.base.Strings;
 import com.opencsv.CSVWriter;
 
 public class FindClasses {
@@ -53,17 +48,9 @@ public class FindClasses {
 					public void visit(ImportDeclaration n, Object arg) {
 						super.visit(n, arg);
 						if (isTestingImport(n.getName().toString()) && !path.contains("/clover/"))
-							// && path.contains("/src/"))
 							testFiles.add(projectPath + path);
 					}
-					//
-					// @Override
-					// public void visit(MarkerAnnotationExpr a, Object arg) {
-					// super.visit(n, arg);
-					// if (isTestingImport(.getName().toString()) && !path.contains("/target/")
-					// && path.contains("/src/"))
-					// testFiles.add(projectPath + path);
-					// }
+
 				}.visit(JavaParser.parse(file), null);
 			} catch (IOException e) {
 				new RuntimeException(e);
@@ -102,22 +89,21 @@ public class FindClasses {
 
 	}
 
-	public static void main(String[] args) throws IOException {
-		String[] projects = { "/Users/Dor/Desktop/Coverage/cors-filter-cors-filter-1.0.1",
-				"/Users/Dor/Desktop/Coverage/commons-functor-FUNCTOR_1_0_RC1",
-				"/Users/Dor/Desktop/Coverage/cucumber-reporting-cucumber-reporting-4.3.0",
-				"/Users/Dor/Desktop/Coverage/jsoup-jsoup-1.11.3", "/Users/Dor/Desktop/Coverage/exp4j-exp4j-0.4.8",
-				"/Users/Dor/Desktop/Coverage/commons-io-commons-io-2.6-RC3",
-				"/Users/Dor/Desktop/Coverage/retrofit-parent-2.0.0-beta3",
-				"/Users/Dor/Desktop/Coverage/commons-dbcp-commons-dbcp-2.5.0",
-				"/Users/Dor/Desktop/Coverage/commons-exec-1.3",
-				"/Users/Dor/Desktop/Coverage/commons-collections-collections-4.3-RC2" };
-
+	public static void extractTestClassesToCSVs(String[] projects) {
 		for (String projectPath : projects) {
 			File projectDir = new File(projectPath);
 			Set<String> tests = extractTesFiles(projectDir, projectPath);
 			Set<String> productions = extractProductionFiles(projectDir, projectPath);
-			translateToCSV(findMatches(tests, productions), projectPath);
+			try {
+				translateToCSV(findMatches(tests, productions), projectPath);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
+
+	// public static void main(String[] args) throws IOException {
+	//
+	// }
 }

@@ -1,5 +1,12 @@
 package testsmell.smell;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.BodyDeclaration;
@@ -11,14 +18,11 @@ import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.ExpressionStmt;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+
 import testsmell.AbstractSmell;
-import testsmell.SmellyElement;
 import testsmell.TestFile;
 import testsmell.TestMethod;
 import testsmell.Util;
-
-import java.io.FileNotFoundException;
-import java.util.*;
 
 public class GeneralFixture extends AbstractSmell {
 
@@ -70,7 +74,7 @@ public class GeneralFixture extends AbstractSmell {
 			// fields) that are initialized in the setup method
 			// TODO: There has to be a better way to do this identification/check!
 			Optional<BlockStmt> blockStmt = setupMethod.getBody();
-			NodeList nodeList = blockStmt.get().getStatements();
+			NodeList<?> nodeList = blockStmt.get().getStatements();
 			for (int i = 0; i < nodeList.size(); i++) {
 				for (int j = 0; j < fieldList.size(); j++) {
 					for (int k = 0; k < fieldList.get(j).getVariables().size(); k++) {
@@ -108,7 +112,7 @@ public class GeneralFixture extends AbstractSmell {
 		private MethodDeclaration methodDeclaration = null;
 		private MethodDeclaration currentMethod = null;
 		TestMethod testMethod;
-		private Set<String> fixtureCount = new HashSet();
+		private Set<String> fixtureCount = new HashSet<String>();
 
 		@Override
 		public void visit(ClassOrInterfaceDeclaration n, Void arg) {
@@ -157,7 +161,7 @@ public class GeneralFixture extends AbstractSmell {
 					testMethod.setHasSmell(false);
 				}
 				smellyElementList.add(testMethod);
-				fixtureCount = new HashSet();
+				fixtureCount = new HashSet<String>();
 				currentMethod = null;
 			}
 		}

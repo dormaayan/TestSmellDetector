@@ -1,5 +1,10 @@
 package testsmell.smell;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.MethodDeclaration;
@@ -7,16 +12,11 @@ import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.MemberValuePair;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+
 import testsmell.AbstractSmell;
-import testsmell.SmellyElement;
 import testsmell.TestFile;
 import testsmell.TestMethod;
 import testsmell.Util;
-
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 public class UnknownTest extends AbstractSmell {
 
@@ -68,6 +68,7 @@ public class UnknownTest extends AbstractSmell {
 	private class ClassVisitor extends VoidVisitorAdapter<Void> {
 		private MethodDeclaration currentMethod = null;
 		TestMethod testMethod;
+		@SuppressWarnings("unused")
 		List<String> assertMessage = new ArrayList<>();
 		boolean hasAssert = false;
 		boolean hasExceptionAnnotation = false;

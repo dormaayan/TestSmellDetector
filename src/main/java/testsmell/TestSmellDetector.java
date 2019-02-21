@@ -1,16 +1,33 @@
 package testsmell;
 
-import com.github.javaparser.JavaParser;
-import com.github.javaparser.ast.CompilationUnit;
-import org.apache.commons.lang3.StringUtils;
-import testsmell.smell.*;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.github.javaparser.JavaParser;
+import com.github.javaparser.ast.CompilationUnit;
+
+import testsmell.smell.AssertionRoulette;
+import testsmell.smell.ConditionalTestLogic;
+import testsmell.smell.DuplicateAssert;
+import testsmell.smell.EagerTest;
+import testsmell.smell.EmptyTest;
+import testsmell.smell.ExceptionCatchingThrowing;
+import testsmell.smell.GeneralFixture;
+import testsmell.smell.MagicNumberTest;
+import testsmell.smell.MysteryGuest;
+import testsmell.smell.PrintStatement;
+import testsmell.smell.RedundantAssertion;
+import testsmell.smell.ResourceOptimism;
+import testsmell.smell.SensitiveEquality;
+import testsmell.smell.SleepyTest;
+import testsmell.smell.UnknownTest;
+import testsmell.smell.VerboseTest;
 
 public class TestSmellDetector {
 

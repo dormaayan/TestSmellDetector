@@ -1,13 +1,13 @@
 package testsmell;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class TestFile {
 	private String app, testFilePath, productionFilePath, testFileName;
@@ -78,7 +78,7 @@ public class TestFile {
 	}
 
 	public String getTestFileName() {
-		int lastIndex = testFilePath.lastIndexOf("\\");
+		int lastIndex = testFilePath.lastIndexOf("/");
 		return testFilePath.substring(lastIndex + 1, testFilePath.length());
 	}
 
